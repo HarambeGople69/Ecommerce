@@ -41,8 +41,9 @@ dependencies:
   lottie: ^1.2.1
   flutter_screenutil: ^5.0.1+1
   device_preview: ^1.0.0
-  flutter_overboard: ^3.0.0
   fluttertoast: ^8.0.8
+  onboarding: ^2.1.0
+  firebase_auth: ^3.3.4
 
 dev_dependencies:
   flutter_test:
