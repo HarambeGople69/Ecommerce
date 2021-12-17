@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:myapp/screens/authentication_screen/authentication_screen.dart';
 import 'package:myapp/screens/pages/dashboard.dart';
+import 'package:myapp/widgets/our_sized_box.dart';
 import 'package:onboarding/onboarding.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -15,17 +17,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final onboardingPagesList = [
     PageModel(
       widget: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: 45.0),
-            child: Lottie.asset("assets/animations/1.json"),
+            height: ScreenUtil().setSp(350),
+            // color: Colors.pink,
+            child: Center(
+              child: Lottie.asset(
+                "assets/animations/1.json",
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
+          OurSizedBox(),
           Container(
             width: double.infinity,
             child: Center(
               child: Text(
-                'SECURED BACKUP',
+                'WE BUILD TRUST',
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(25),
                   color: Colors.white,
@@ -34,11 +43,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
+        ],
+      ),
+    ),
+    PageModel(
+      widget: Column(
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: ScreenUtil().setSp(350),
+            // color: Colors.pink,
+            child: Lottie.asset(
+              "assets/animations/2.json",
+              fit: BoxFit.contain,
+            ),
+          ),
+          OurSizedBox(),
           Container(
             width: double.infinity,
-            child: Text(
-              'Keep your files in closed safe so you can\'t lose them',
-              style: pageInfoStyle,
+            child: Center(
+              child: Text(
+                'TITLE 2',
+                style: TextStyle(
+                  fontSize: ScreenUtil().setSp(25),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
         ],
@@ -46,44 +77,31 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
     PageModel(
       widget: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset("assets/animations/2.json"),
-          Center(
-            child: Text(
-              'CHANGE AND RISEs',
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(25),
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
+          Container(
+            height: ScreenUtil().setSp(350),
+            // color: Colors.pink,
+            child: Center(
+              child: Lottie.asset(
+                "assets/animations/3.json",
+                fit: BoxFit.contain,
               ),
             ),
           ),
-          Text(
-            'Give others access to any file or folder you choose',
-            style: pageInfoStyle,
-          ),
-        ],
-      ),
-    ),
-    PageModel(
-      widget: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset("assets/animations/3.json"),
-          Center(
-            child: Text(
-              'EASY ACCESS',
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(25),
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
+          OurSizedBox(),
+          Container(
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                'TITLE 3',
+                style: TextStyle(
+                  fontSize: ScreenUtil().setSp(25),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
-          ),
-          Text(
-            'Reach your files anytime from any devices anywhere',
-            style: pageInfoStyle,
           ),
         ],
       ),
@@ -100,12 +118,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Onboarding(
+        skipButtonStyle: SkipButtonStyle(
+            skipButtonText: Text(
+          "Skip",
+          style: TextStyle(
+            fontSize: ScreenUtil().setSp(15),
+            color: Colors.white,
+          ),
+        )),
         isSkippable: true,
         proceedButtonStyle: ProceedButtonStyle(
+          proceedpButtonText: Text(
+            "Sign Up",
+            style: TextStyle(
+              fontSize: ScreenUtil().setSp(15),
+              color: Colors.white,
+            ),
+          ),
           proceedButtonRoute: (context) {
             return Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) {
-              return DashBoardScreen();
+              return LoginPage();
             }));
           },
         ),
