@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:myapp/models/our_product_model.dart';
+import 'package:myapp/services/card_management/cart_management.dart';
 import 'package:myapp/widgets/our_sized_box.dart';
+import 'package:provider/provider.dart';
 
 class OurProductDetail extends StatefulWidget {
   final Product product;
@@ -156,6 +158,17 @@ class _OurProductDetailState extends State<OurProductDetail> {
                   ),
                   onPressed: () {
                     setState(() {
+                      if (isadded) {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .removeCounter();
+                        Provider.of<CartProvider>(context, listen: false)
+                            .removeProduct(widget.product);
+                      } else {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .addCounter();
+                        Provider.of<CartProvider>(context, listen: false)
+                            .addProduct(widget.product);
+                      }
                       isadded = !isadded;
                     });
                   },

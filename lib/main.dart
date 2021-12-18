@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myapp/screens/splash_screen/outer_wrapper.dart';
 import 'package:myapp/screens/splash_screen/splash_screen.dart';
+import 'package:myapp/services/card_management/cart_management.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,16 +20,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
-    return ScreenUtilInit(
-      builder: () => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(),
-        // ignore: prefer_const_constructors 
-        builder: (context, child) {
-          return child!;
-        },
-        home: SplashScreen(),
-      ),
+    return ChangeNotifierProvider(
+      create: (_) => CartProvider(),
+      child: Builder(builder: (BuildContext context) {
+        return ScreenUtilInit(
+          builder: () => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData.dark(),
+            // ignore: prefer_const_constructors
+            builder: (context, child) {
+              return child!;
+            },
+            home: SplashScreen(),
+          ),
+        );
+      }),
     );
   }
 }

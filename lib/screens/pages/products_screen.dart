@@ -6,9 +6,11 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:myapp/apis/api_service.dart';
 import 'package:myapp/models/our_product_model.dart';
 import 'package:intl/intl.dart';
+import 'package:myapp/services/card_management/cart_management.dart';
 import 'package:myapp/services/google_authentication_service.dart/google_authentication_service.dart';
 import 'package:myapp/widgets/our_product_details.dart';
 import 'package:myapp/widgets/our_sized_box.dart';
+import 'package:provider/provider.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -38,12 +40,18 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Center(
-            child: Badge(
-              badgeContent: Text("0"),
-              animationDuration: Duration(milliseconds: 300),
-              child: Icon(
-                Icons.shopping_bag_outlined,
+          leading: InkWell(
+            onTap: () {
+              print(Provider.of<CartProvider>(context, listen: false).products);
+            },
+            child: Center(
+              child: Badge(
+                badgeContent:
+                    Text(Provider.of<CartProvider>(context).counter.toString()),
+                animationDuration: Duration(milliseconds: 300),
+                child: Icon(
+                  Icons.shopping_bag_outlined,
+                ),
               ),
             ),
           ),
