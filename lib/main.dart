@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
-        // ignore: prefer_const_constructors
+        // ignore: prefer_const_constructors 
         builder: (context, child) {
           return child!;
         },
