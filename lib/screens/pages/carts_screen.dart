@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myapp/models/our_product_model.dart';
+import 'package:myapp/screens/pages/checkout_screen.dart';
 import 'package:myapp/services/card_management/cart_management.dart';
 import 'package:myapp/widgets/our_cart_screen_tile.dart';
 import 'package:myapp/widgets/our_sized_box.dart';
@@ -95,7 +96,11 @@ class _CartScreenState extends State<CartScreen> {
                               Provider.of<CartProvider>(context).total_price ==
                                       0.0
                                   ? null
-                                  : () {},
+                                  : () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                                      return CheckOutPage();
+                                    },),);
+                                  },
                           child: Text(
                             "Check out",
                           ),
