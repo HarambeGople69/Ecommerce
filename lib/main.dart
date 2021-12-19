@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
         return ScreenUtilInit(
           builder: () => MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: ThemeData.dark(),
+            theme: ThemeData(
+              brightness: Brightness.dark
+            ),
             // ignore: prefer_const_constructors
             builder: (context, child) {
               return child!;

@@ -51,6 +51,7 @@ class Data {
 }
 
 class Product {
+  int? number;
   int? id;
   String? name;
   String? image;
@@ -60,7 +61,8 @@ class Product {
   List<String>? category;
 
   Product(
-      {this.id,
+      {this.number,
+      this.id,
       this.name,
       this.image,
       this.price,
@@ -76,6 +78,7 @@ class Product {
     stock = json['stock'];
     createDate = json['createDate'];
     category = json['category'].cast<String>();
+    number = json["number"];
   }
 
   Map<String, dynamic> toJson() {
@@ -87,6 +90,7 @@ class Product {
     data['stock'] = this.stock;
     data['createDate'] = this.createDate;
     data['category'] = this.category;
+    data["number"] = null;
     return data;
   }
 }

@@ -160,14 +160,14 @@ class _OurProductDetailState extends State<OurProductDetail> {
                     setState(() {
                       if (isadded) {
                         Provider.of<CartProvider>(context, listen: false)
-                            .removeCounter();
-                        Provider.of<CartProvider>(context, listen: false)
-                            .removeProduct(widget.product);
+                            .removeCounter(widget.product);
+                        // Provider.of<CartProvider>(context, listen: false)
+                        //     .removeProduct(widget.product);
                       } else {
                         Provider.of<CartProvider>(context, listen: false)
-                            .addCounter();
-                        Provider.of<CartProvider>(context, listen: false)
-                            .addProduct(widget.product);
+                            .addCounter(widget.product);
+                        // Provider.of<CartProvider>(context, listen: false)
+                        //     .addProduct(widget.product);
                       }
                       isadded = !isadded;
                     });
