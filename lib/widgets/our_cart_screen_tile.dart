@@ -191,7 +191,7 @@ class _CartScreenTileState extends State<CartScreenTile> {
                         number--;
                       });
                       Provider.of<CartProvider>(context, listen: false)
-                          .updateProduct(widget.product, number);
+                          .updateProduct(widget.product, number, false);
                     }
                   },
                   icon: Icon(Icons.remove),
@@ -199,11 +199,13 @@ class _CartScreenTileState extends State<CartScreenTile> {
                 Text(number.toString()),
                 IconButton(
                   onPressed: () {
-                    setState(() {
-                      number++;
-                    });
-                    Provider.of<CartProvider>(context, listen: false)
-                        .updateProduct(widget.product, number);
+                    if (number < widget.product.stock!) {
+                      setState(() {
+                        number++;
+                      });
+                      Provider.of<CartProvider>(context, listen: false)
+                          .updateProduct(widget.product, number, true);
+                    }
                   },
                   icon: Icon(Icons.add),
                 ),

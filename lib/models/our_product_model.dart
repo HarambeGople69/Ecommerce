@@ -51,7 +51,7 @@ class Data {
 }
 
 class Product {
-  int? number;
+  int? number = 1;
   int? id;
   String? name;
   String? image;

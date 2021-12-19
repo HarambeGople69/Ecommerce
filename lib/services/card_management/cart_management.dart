@@ -6,7 +6,6 @@ class CartProvider with ChangeNotifier {
   int _counter = 0;
   int get counter => _counter;
   List<Product> _products = [];
-  
 
   double _total_price = 0.0;
   double get total_price => _total_price;
@@ -20,6 +19,10 @@ class CartProvider with ChangeNotifier {
       }
     });
     if (index == -5) {
+      int? price;
+
+      price = int.parse(product.price!.split("\$")[1]);
+      _total_price = _total_price + price * 100;
       _counter++;
       notifyListeners();
       addProduct(product);
@@ -36,6 +39,12 @@ class CartProvider with ChangeNotifier {
     });
     if (index == -5) {
     } else {
+      int? items;
+      items = product.number ?? 1;
+      int? price;
+
+      price = int.parse(product.price!.split("\$")[1]);
+      _total_price = _total_price - price * 100 * items;
       _counter--;
       notifyListeners();
       removeProduct(product);
@@ -62,7 +71,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  updateProduct(Product product, int number) {
+  updateProduct(Product product, int number, bool added) {
     print("upadteProduct ==============");
     int index = -5;
     _products.forEach((element) {
@@ -72,6 +81,17 @@ class CartProvider with ChangeNotifier {
     });
     if (index == -5) {
     } else {
+      if (added == true) {
+        int? price;
+
+        price = int.parse(product.price!.split("\$")[1]);
+        _total_price = _total_price + price * 100;
+      } else {
+        int? price;
+
+        price = int.parse(product.price!.split("\$")[1]);
+        _total_price = _total_price - price * 100;
+      }
       var a = _products[index].toJson();
       a.update("number", (value) => number);
       removeProduct(product);
