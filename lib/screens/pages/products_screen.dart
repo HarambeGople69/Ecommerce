@@ -51,6 +51,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 animationDuration: Duration(milliseconds: 300),
                 child: Icon(
                   Icons.shopping_bag_outlined,
+                  size: ScreenUtil().setSp(20),
                 ),
               ),
             ),
@@ -62,7 +63,10 @@ class _ProductScreenState extends State<ProductScreen> {
               onPressed: () async {
                 await GoogleAuth().logout(context);
               },
-              icon: Icon(Icons.logout),
+              icon: Icon(
+                Icons.logout,
+                size: ScreenUtil().setSp(20),
+              ),
             ),
           ],
         ),

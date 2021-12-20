@@ -110,14 +110,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Onboarding(
+    return Scaffold(
+      body: Onboarding(
         skipButtonStyle: SkipButtonStyle(
             skipButtonText: Text(
           "Skip",

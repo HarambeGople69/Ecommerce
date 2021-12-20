@@ -73,6 +73,9 @@ class _CartScreenState extends State<CartScreen> {
                         child: Center(
                           child: Text(
                             "Total Price: Rs ${Provider.of<CartProvider>(context).total_price}",
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(15),
+                            ),
                           ),
                         ),
                       ),
@@ -97,12 +100,20 @@ class _CartScreenState extends State<CartScreen> {
                                       0.0
                                   ? null
                                   : () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                                      return CheckOutPage();
-                                    },),);
-                                  },
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return CheckOutPage();
+                                          },
+                                        ),
+                                      );
+                                    },
                           child: Text(
                             "Check out",
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(15),
+                            ),
                           ),
                         ),
                       ),

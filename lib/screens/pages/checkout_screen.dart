@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myapp/services/card_management/cart_management.dart';
 import 'package:myapp/widgets/our_elevated_button.dart';
+import 'package:myapp/widgets/our_flutter_toast.dart';
 import 'package:myapp/widgets/our_sized_box.dart';
 import 'package:myapp/widgets/our_text_field.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
   TextEditingController _billing_address_controller = TextEditingController();
   TextEditingController _delivery_address_controller = TextEditingController();
   TextEditingController _telephone_controller = TextEditingController();
+  FocusNode _name_node = FocusNode();
+  FocusNode _billing_node = FocusNode();
+  FocusNode _delivery_node = FocusNode();
+  FocusNode _telephone_node = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,32 +43,67 @@ class _CheckOutPageState extends State<CheckOutPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomTextField(
+                  icon: Icons.person,
+                  start: _name_node,
+                  end: _billing_node,
                   controller: _name_controller,
-                  validator: (value) {},
+                  validator: (value) {
+                    if (value.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Cannot be empty";
+                    }
+                  },
                   title: "User Name",
                   type: TextInputType.name,
-                  number: 1,
+                  number: 0,
                 ),
                 OurSizedBox(),
                 CustomTextField(
+                  icon: Icons.location_on,
+                  start: _billing_node,
+                  end: _delivery_node,
                   controller: _billing_address_controller,
-                  validator: (value) {},
+                  validator: (value) {
+                    if (value.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Cannot be empty";
+                    }
+                  },
                   title: "Billing Address",
                   type: TextInputType.streetAddress,
-                  number: 1,
+                  number: 0,
                 ),
                 OurSizedBox(),
                 CustomTextField(
+                  icon: Icons.location_on,
+                  start: _delivery_node,
+                  end: _telephone_node,
                   controller: _delivery_address_controller,
-                  validator: (value) {},
+                  validator: (value) {
+                    if (value.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Cannot be empty";
+                    }
+                  },
                   title: "Delivery Address",
                   type: TextInputType.streetAddress,
-                  number: 1,
+                  number: 0,
                 ),
                 OurSizedBox(),
                 CustomTextField(
+                  icon: Icons.phone,
+                  start: _telephone_node,
                   controller: _telephone_controller,
-                  validator: (value) {},
+                  validator: (value) {
+                    if (value.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Cannot be empty";
+                    }
+                  },
                   title: "Telephone no:",
                   type: TextInputType.phone,
                   number: 1,
@@ -88,12 +128,19 @@ class _CheckOutPageState extends State<CheckOutPage> {
                       child: Center(
                         child: Text(
                           "Total Price: Rs ${Provider.of<CartProvider>(context).total_price}",
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setSp(15),
+                          ),
                         ),
                       ),
                     ),
                     OurElevatedButton(
                       title: "Check Out",
-                      function: () {},
+                      function: () {
+                        if (_formKey.currentState!.validate()) {
+                          OurToast().showSuccessToast("Submitted successfully");
+                        } else {}
+                      },
                     ),
                   ],
                 ),

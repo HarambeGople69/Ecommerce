@@ -80,7 +80,7 @@ class _CartScreenTileState extends State<CartScreenTile> {
                   ),
                 ),
                 SizedBox(
-                  width: ScreenUtil().setSp(2),
+                  width: ScreenUtil().setSp(10),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +171,7 @@ class _CartScreenTileState extends State<CartScreenTile> {
                       onPressed: () {
                         Provider.of<CartProvider>(context, listen: false)
                             .removeCounter(widget.product);
-                      },
+                      },  
                       icon: Icon(
                         Icons.delete,
                         color: Colors.red,
@@ -196,7 +196,12 @@ class _CartScreenTileState extends State<CartScreenTile> {
                   },
                   icon: Icon(Icons.remove),
                 ),
-                Text(number.toString()),
+                Text(
+                  number.toString(),
+                  style: TextStyle(
+                    fontSize: ScreenUtil().setSp(15),
+                  ),
+                ),
                 IconButton(
                   onPressed: () {
                     if (number < widget.product.stock!) {
